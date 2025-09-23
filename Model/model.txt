@@ -1,0 +1,54 @@
+Table users {
+  rut serial [pk]
+  name varchar
+  email varchar [unique]
+  password_digest varchar
+  role varchar 
+}
+
+Table addresses {
+  id serial [pk]
+  user_id int [ref: > users.rut]
+  name varchar
+  address_line varchar
+  city varchar
+  region varchar
+  postal_code varchar
+}
+
+Table products {
+  id serial [pk]
+  name varchar
+  description text
+}
+
+Table product_variants {
+  id serial [pk]
+  product_id int [ref: > products.id]
+  size varchar
+  price numeric
+  stock int
+}
+
+Table cart_items {
+  id serial [pk]
+  user_id int [ref: > users.rut] 
+  product_variant_id int [ref: > product_variants.id]
+  quantity int
+}
+
+Table orders {
+  id serial [pk]
+  user_id int [ref: > users.rut]
+  address_id int [ref: > addresses.id]
+  status varchar
+  total numeric
+}
+
+Table order_items {
+  id serial [pk]
+  order_id int [ref: > orders.id]
+  product_variant_id int [ref: > product_variants.id]
+  quantity int
+  unit_price numeric
+}
