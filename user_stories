@@ -1,0 +1,27 @@
+User Stories
+
+Users & Authentication
+1. As a guest user, I want to register with my email, password, and basic personal data so that I can purchase olive oils.
+2. As a registered user, I want to log in with my credentials so that I can access my account and past orders.
+3. As a registered user, I want to edit my personal data and shipping address so that my information stays up to date.
+
+Product Catalog
+4. As a guest user, I want to browse the product catalog with name, description, price, and photo so that I can evaluate which olive oil to buy.
+5. As a guest user, I want to filter products by category (e.g., extra virgin, flavored, bottle size) so that I can find what I need faster.
+6. As a registered user, I want to see the stock availability of a product so that I know if I can purchase it.
+
+Shopping Cart
+7. As a registered user, I want to add a product to my shopping cart so that I can start the checkout process.
+8. As a registered user, I want to modify product quantities in the cart so that I can adjust my order before paying.
+9. As a registered user, I want to remove a product from the cart if I change my mind.
+10. As a registered user, I want to see the updated total of my cart automatically so that I know how much I need to pay.
+
+Checkout & Orders
+11. As a registered user, I want to pay for my cart using different methods (credit card, bank transfer, etc.) so that I can complete my purchase.
+12. As a registered user, I want to receive a purchase confirmation with an order number so that I have proof of my transaction.
+13. As a registered user, I want to check the status of my orders (pending, paid, shipped, delivered) so that I can track them.
+
+Administration
+14. As an administrator, I want to manage the product catalog (create, edit, delete products) so that the store remains updated.
+15. As an administrator, I want to manage product stock so that inventory reflects real availability.
+16. As an administrator, I want to review sales and order reports so that I can analyze business performance.
