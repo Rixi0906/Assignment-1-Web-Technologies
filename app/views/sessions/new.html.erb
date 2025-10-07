@@ -1,0 +1,37 @@
+<div class="container py-5" style="max-width: 480px;">
+  <h1 class="h3 text-center mb-4">Iniciar sesión</h1>
+
+  <% if flash[:alert] %>
+    <div class="alert alert-danger"><%= flash[:alert] %></div>
+  <% end %>
+  <% if flash[:notice] %>
+    <div class="alert alert-success"><%= flash[:notice] %></div>
+  <% end %>
+
+  <%= form_with url: login_path, scope: :session, class: "card p-4 shadow-sm", data: { turbo: false } do |f| %>
+    <div class="mb-3">
+      <%= f.label :email, "Email", class: "form-label" %>
+      <%= f.email_field :email, class: "form-control", placeholder: "tu@email.com", required: true, autofocus: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :password, "Contraseña", class: "form-label" %>
+      <%= f.password_field :password, class: "form-control", placeholder: "••••••••", required: true %>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div class="form-check">
+        <%= f.check_box :remember_me, class: "form-check-input", id: "remember_me" %>
+        <%= f.label :remember_me, "Recordarme", class: "form-check-label" %>
+      </div>
+      <%= link_to "¿Olvidaste tu contraseña?", new_password_reset_path, class: "small text-decoration-none" %>
+    </div>
+
+    <%= f.submit "Entrar", class: "btn btn-success w-100" %>
+  <% end %>
+
+  <p class="text-center mt-3 mb-0">
+    ¿No tienes cuenta?
+    <%= link_to "Regístrate", register_path, class: "text-decoration-none" %>
+  </p>
+</div>

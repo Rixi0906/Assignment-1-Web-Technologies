@@ -1,0 +1,29 @@
+<div class="container my-5">
+  <h1 class="text-center mb-5" style="color: #7a5a2c;">Nuestros Productos</h1>
+
+  <div class="row g-4 justify-content-center">
+    <% @variants.each do |variant| %>
+      <div class="col-md-4 col-sm-6">
+        <div class="card border-0 shadow-sm h-100 text-center">
+          <%# 🫒 Local image per size variant %>
+          <% if variant.size == "1L" %>
+            <%= image_tag "bottle_1l.jpeg", class: "card-img-top", alt: "Aceite 1L" %>
+          <% elsif variant.size == "5L" %>
+            <%= image_tag "bottle_5l.jpeg", class: "card-img-top", alt: "Aceite 5L" %>
+          <% else %>
+            <%= image_tag "default_bottle.jpg", class: "card-img-top", alt: "Aceite de oliva" %>
+          <% end %>
+
+          <div class="card-body">
+            <h5 class="card-title fw-bold"><%= variant.product.name %> - <%= variant.size %></h5>
+            <p class="card-text text-muted"><%= variant.product.description %></p>
+            <p class="fw-bold fs-5" style="color: #7a5a2c;">$<%= number_with_precision(variant.price, precision: 2) %></p>
+            <p class="text-muted">Stock: <%= variant.stock %></p>
+
+            <%= link_to "Ver detalles", product_path(variant.product), class: "btn btn-outline-success mt-2" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

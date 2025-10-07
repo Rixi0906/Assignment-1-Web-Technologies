@@ -1,0 +1,92 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+/*  @import "bootstrap"; */
+
+
+.carousel-item img {
+  height: 80vh; 
+  object-fit: cover; 
+}
+
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+  height: 280px;
+  object-fit: contain;
+  padding: 1rem;
+}
+
+.btn-outline-success {
+  color: #155d27;
+  border-color: #155d27;
+}
+
+.btn-outline-success:hover {
+  background-color: #155d27;
+  color: #fff;
+}
+
+.nav-link {
+  color: #7a5a2c;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: #155d27;
+  text-decoration: underline;
+}
+
+.navbar {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: 0.3px;
+}
+
+/* === Custom Navbar & Footer Styling === */
+
+.navbar-custom {
+  background-color: #6a7027; /* Deep green tone */
+}
+
+.navbar-custom .nav-link,
+.navbar-custom .navbar-brand span,
+.navbar-custom .bi {
+  color: #ffffff;
+}
+
+.navbar-custom .nav-link:hover {
+  color: #d4d4d4;
+  text-decoration: underline;
+}
+
+/* .navbar-custom img {
+  filter: brightness(0) invert(1);
+} */
+
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255,255,255,1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+footer {
+  color: #6c757d;
+}
+

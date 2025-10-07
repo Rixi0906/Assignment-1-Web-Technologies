@@ -1,0 +1,28 @@
+<div class="container my-5">
+  <div class="card shadow-lg border-0">
+    <div class="card-body">
+      <h1 class="card-title text-center mb-3"><%= @product.name %></h1>
+      <p class="card-text text-center text-muted mb-4"><%= @product.description %></p>
+
+      <h4 class="fw-bold mb-3">Available Sizes</h4>
+      <div class="row">
+        <% @product.product_variants.each do |variant| %>
+          <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100 border-success">
+              <div class="card-body text-center">
+                <h5 class="card-title"><%= variant.size %></h5>
+                <p class="card-text fw-semibold text-success">$<%= number_to_currency(variant.price, precision: 2, unit: '') %></p>
+                <p class="text-muted">Stock: <%= variant.stock %></p>
+                <%= link_to "Add to Cart", "#", class: "btn btn-outline-success btn-sm disabled" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="text-center mt-4">
+        <%= link_to "Back to Products", products_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>

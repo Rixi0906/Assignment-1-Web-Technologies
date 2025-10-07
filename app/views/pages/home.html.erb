@@ -1,0 +1,55 @@
+<!-- Full-width Carousel -->
+<div id="oliveCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#oliveCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#oliveCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#oliveCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <%= image_tag "olivetrees.jpg", class: "d-block w-100", alt: "Olive Trees" %>
+      <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+        <h2>El origen de nuestro aceite</h2>
+        <p>Cosechamos olivas con respeto por la tierra y la tradición.</p>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <%= image_tag "farmer.jpeg", class: "d-block w-100", alt: "Olive Farmer" %>
+      <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+        <h2>Nuestros productores</h2>
+        <p>Familias dedicadas a la calidad y al sabor auténtico del campo chileno.</p>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <%= image_tag "oliveoil.jpg", class: "d-block w-100", alt: "Olive Oil Bottles" %>
+      <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+        <h2>Extra Virgen Premium</h2>
+        <p>Disfruta de nuestros aceites en sus distintas variedades y formatos.</p>
+      </div>
+    </div>
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#oliveCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Anterior</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#oliveCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Siguiente</span>
+  </button>
+</div>
+
+<div class="container my-5 text-center">
+  <h2 class="fw-bold mb-3">Aceites Piedra Colgada</h2>
+  <p class="lead">Aceite de oliva extra virgen — cosecha local, sabor auténtico.</p>
+  <%= link_to "Descubre nuestros productos", products_path, class: "btn btn-success btn-lg mt-3" %>
+</div>
+
+<div class="container my-5 text-center">
+  <h3 class="fw-bold mb-3">Disfruta del sabor natural del olivar chileno</h3>
+  <p>Elaboramos aceites con tradición, calidad y respeto por la tierra. Conoce nuestras variedades y formatos.</p>
+  <%= image_tag "oliveoil.jpg", class: "img-fluid rounded shadow mt-4", style: "max-height: 300px;" %>
+</div>
