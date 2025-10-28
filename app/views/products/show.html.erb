@@ -1,28 +1,31 @@
-<div class="container my-5">
-  <div class="card shadow-lg border-0">
-    <div class="card-body">
-      <h1 class="card-title text-center mb-3"><%= @product.name %></h1>
-      <p class="card-text text-center text-muted mb-4"><%= @product.description %></p>
+<div class="container py-5" style="max-width: 720px;">
+  <div class="card shadow-sm">
+    <div class="card-body p-4">
+      <h1 class="h3 text-center mb-2"><%= @product.name %></h1>
+      <p class="text-center text-muted mb-4"><%= @product.description %></p>
 
-      <h4 class="fw-bold mb-3">Available Sizes</h4>
-      <div class="row">
-        <% @product.product_variants.each do |variant| %>
-          <div class="col-md-6 col-lg-4 mb-3">
-            <div class="card h-100 border-success">
-              <div class="card-body text-center">
-                <h5 class="card-title"><%= variant.size %></h5>
-                <p class="card-text fw-semibold text-success">$<%= number_to_currency(variant.price, precision: 2, unit: '') %></p>
-                <p class="text-muted">Stock: <%= variant.stock %></p>
-                <%= link_to "Add to Cart", "#", class: "btn btn-outline-success btn-sm disabled" %>
-              </div>
+      <% if @selected_variant %>
+        <%= form_with url: cart_items_path, scope: :cart_item, data: { turbo: false } do |f| %>
+          <%= f.hidden_field :product_variant_id, value: @selected_variant.id %>
+
+          <div class="text-center mb-4">
+            <h5 class="fw-semibold"><%= @selected_variant.size %></h5>
+            <p class="mb-1 text-muted">Stock: <%= @selected_variant.stock %></p>
+            <p class="fs-5 fw-semibold">$<%= number_with_delimiter(@selected_variant.price) %></p>
+          </div>
+
+          <div class="d-flex justify-content-center align-items-end gap-3">
+            <div>
+              <label class="form-label">Cantidad</label>
+              <%= f.number_field :quantity, value: 1, min: 1, step: 1, class: "form-control", style: "width:6rem;", required: true %>
             </div>
+            <%= f.submit "Agregar al carrito", class: "btn btn-success px-4" %>
+            <%= link_to "Volver a productos", products_path, class: "btn btn-outline-secondary" %>
           </div>
         <% end %>
-      </div>
-
-      <div class="text-center mt-4">
-        <%= link_to "Back to Products", products_path, class: "btn btn-secondary" %>
-      </div>
+      <% else %>
+        <p class="text-center text-danger">No se encontró la variante seleccionada.</p>
+      <% end %>
     </div>
   </div>
 </div>

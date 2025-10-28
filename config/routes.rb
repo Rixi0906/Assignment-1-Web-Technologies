@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   # Core resources
   resources :products, only: [:index, :show]
   resources :orders, only: [:index, :show]
+  resources :cart_items, only: [:create, :update, :destroy]
 
   # Optional: password reset routes
   resources :password_resets, only: [:new, :create, :edit, :update]

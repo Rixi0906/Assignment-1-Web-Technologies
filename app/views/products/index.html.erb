@@ -20,7 +20,7 @@
             <p class="fw-bold fs-5" style="color: #7a5a2c;">$<%= number_with_precision(variant.price, precision: 2) %></p>
             <p class="text-muted">Stock: <%= variant.stock %></p>
 
-            <%= link_to "Ver detalles", product_path(variant.product), class: "btn btn-outline-success mt-2" %>
+            <%= link_to "Ver detalles", product_path(variant.product, variant_id: variant.id), class: "btn btn-outline-success" %>
           </div>
         </div>
       </div>
