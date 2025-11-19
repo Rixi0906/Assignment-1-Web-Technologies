@@ -7,13 +7,14 @@ class CartItemsController < ApplicationController
 
   # ADD
   def create
-    pv_id = cart_item_params[:product_variant_id].to_s
-    qty   = cart_item_params[:quantity].to_i.clamp(1, 10_000)
+    pv_id   = cart_item_params[:product_variant_id].to_s
+    qty     = cart_item_params[:quantity].to_i.clamp(1, 10_000)
     variant = ProductVariant.find(pv_id)
 
-    if logged_in?
+    if user_signed_in?
       item = current_user.cart_items.find_or_initialize_by(product_variant_id: variant.id)
       item.quantity = item.quantity.to_i + qty
+
       if within_stock?(variant, item.quantity) && item.save
         redirect_back fallback_location: product_path(variant.product, variant_id: variant.id),
                       notice: "Producto agregado al carrito."
@@ -22,6 +23,7 @@ class CartItemsController < ApplicationController
                       alert: "No hay stock suficiente."
       end
     else
+      # guest cart in session
       session[:cart] ||= {}
       session[:cart][pv_id] = session[:cart][pv_id].to_i + qty
       redirect_back fallback_location: product_path(variant.product, variant_id: variant.id),
@@ -33,7 +35,7 @@ class CartItemsController < ApplicationController
 
   # UPDATE QTY
   def update
-    if logged_in?
+    if user_signed_in?
       if @item.update(cart_item_params)
         redirect_to cart_path, notice: "Carrito actualizado."
       else
@@ -49,7 +51,7 @@ class CartItemsController < ApplicationController
 
   # REMOVE
   def destroy
-    if logged_in?
+    if user_signed_in?
       @item.destroy
     else
       pv_id = params[:id].to_s
@@ -61,7 +63,7 @@ class CartItemsController < ApplicationController
   private
 
   def set_item
-    @item = current_user.cart_items.find(params[:id]) if logged_in?
+    @item = current_user.cart_items.find(params[:id]) if user_signed_in?
   end
 
   def cart_item_params

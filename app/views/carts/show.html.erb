@@ -27,8 +27,10 @@
                   <td><%= ci.product_variant.size %></td>
                   <td>$<%= number_with_delimiter(ci.product_variant.price) %></td>
                   <td>
-                    <%= form_with model: ci, url: cart_item_path(ci), method: :patch, class: "d-flex gap-2", data: { turbo: false } do |f| %>
-                      <%= f.number_field :quantity, min: 1, step: 1, class: "form-control", value: ci.quantity, required: true %>
+                    <%= form_with model: ci, url: cart_item_path(ci), method: :patch,
+                                  class: "d-flex gap-2", data: { turbo: false } do |f| %>
+                      <%= f.number_field :quantity, min: 1, step: 1,
+                                         class: "form-control", value: ci.quantity, required: true %>
                       <%= f.submit "OK", class: "btn btn-outline-secondary btn-sm" %>
                     <% end %>
                   </td>
@@ -48,8 +50,11 @@
                   <td><%= sl.size %></td>
                   <td>$<%= number_with_delimiter(sl.price) %></td>
                   <td>
-                    <%= form_with url: cart_item_path(sl.id), method: :patch, class: "d-flex gap-2", data: { turbo: false } do |f| %>
-                      <%= number_field_tag "cart_item[quantity]", sl.quantity, min: 1, step: 1, class: "form-control", required: true %>
+                    <%= form_with url: cart_item_path(sl.id), method: :patch,
+                                  class: "d-flex gap-2", data: { turbo: false } do |f| %>
+                      <%= number_field_tag "cart_item[quantity]", sl.quantity,
+                                           min: 1, step: 1,
+                                           class: "form-control", required: true %>
                       <%= f.submit "OK", class: "btn btn-outline-secondary btn-sm" %>
                     <% end %>
                   </td>
@@ -74,14 +79,15 @@
         <div class="d-flex flex-wrap gap-2 justify-content-between align-items-center mt-3">
           <%= link_to "← Seguir comprando", products_path, class: "btn btn-outline-secondary" %>
 
-          <% checkout_url = logged_in? ? orders_path : login_path %>
+          <% checkout_url = user_signed_in? ? orders_path : new_user_session_path %>
           <%= link_to "Ir a pagar", checkout_url, class: "btn btn-success px-4" %>
         </div>
 
-        <% unless logged_in? %>
+        <% unless user_signed_in? %>
           <div class="alert alert-info mt-3 mb-0">
-            Estás comprando como invitado. <%= link_to "Inicia sesión", login_path %> o
-            <%= link_to "regístrate", register_path %> para guardar tu carrito.
+            Estás comprando como invitado.
+            <%= link_to "Inicia sesión", new_user_session_path %> o
+            <%= link_to "regístrate", new_user_registration_path %> para guardar tu carrito.
           </div>
         <% end %>
 

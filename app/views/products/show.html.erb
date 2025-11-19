@@ -1,30 +1,109 @@
 <div class="container py-5" style="max-width: 720px;">
+
+  <!-- ADMIN PANEL (only for admins) -->
+  <% if current_user&.admin? %>
+    <div class="mb-3 d-flex flex-wrap gap-2 justify-content-between align-items-center">
+      <div class="d-flex flex-wrap gap-2">
+        <%= link_to "Editar producto",
+                    edit_product_path(@product),
+                    class: "btn btn-sm btn-outline-primary" %>
+
+        <%= button_to "Eliminar producto",
+                      @product,
+                      method: :delete,
+                      class: "btn btn-sm btn-outline-danger",
+                      form: { data: { turbo_confirm: "¿Eliminar este producto?" } } %>
+      </div>
+
+      <div>
+        <%= link_to "Agregar tamaño",
+                    new_product_product_variant_path(@product),
+                    class: "btn btn-sm btn-outline-success" %>
+      </div>
+    </div>
+
+    <% if @product.product_variants.any? %>
+      <div class="card mb-4">
+        <div class="card-header py-2">
+          <strong>Tamaños disponibles (admin)</strong>
+        </div>
+        <div class="card-body p-2">
+          <table class="table table-sm mb-0 align-middle">
+            <thead>
+              <tr>
+                <th>Tamaño</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th class="text-end">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @product.product_variants.each do |v| %>
+                <tr>
+                  <td><%= v.size %></td>
+                  <td>$<%= number_with_delimiter(v.price) %></td>
+                  <td><%= v.stock %></td>
+                  <td class="text-end">
+                    <%= link_to "Editar",
+                                edit_product_product_variant_path(@product, v),
+                                class: "btn btn-sm btn-outline-primary me-1" %>
+                    <%= button_to "Eliminar",
+                                  product_product_variant_path(@product, v),
+                                  method: :delete,
+                                  class: "btn btn-sm btn-outline-danger",
+                                  form: { data: { turbo_confirm: "¿Eliminar este tamaño?" } } %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <!-- END ADMIN PANEL -->
+
+  <!-- CUSTOMER / GUEST PRODUCT VIEW -->
   <div class="card shadow-sm">
     <div class="card-body p-4">
       <h1 class="h3 text-center mb-2"><%= @product.name %></h1>
       <p class="text-center text-muted mb-4"><%= @product.description %></p>
 
       <% if @selected_variant %>
-        <%= form_with url: cart_items_path, scope: :cart_item, data: { turbo: false } do |f| %>
+        <%= form_with url: cart_items_path,
+                      scope: :cart_item,
+                      data: { turbo: false } do |f| %>
           <%= f.hidden_field :product_variant_id, value: @selected_variant.id %>
 
           <div class="text-center mb-4">
             <h5 class="fw-semibold"><%= @selected_variant.size %></h5>
             <p class="mb-1 text-muted">Stock: <%= @selected_variant.stock %></p>
-            <p class="fs-5 fw-semibold">$<%= number_with_delimiter(@selected_variant.price) %></p>
+            <p class="fs-5 fw-semibold">
+              $<%= number_with_delimiter(@selected_variant.price) %>
+            </p>
           </div>
 
           <div class="d-flex justify-content-center align-items-end gap-3">
             <div>
               <label class="form-label">Cantidad</label>
-              <%= f.number_field :quantity, value: 1, min: 1, step: 1, class: "form-control", style: "width:6rem;", required: true %>
+              <%= f.number_field :quantity,
+                                 value: 1,
+                                 min: 1,
+                                 step: 1,
+                                 class: "form-control",
+                                 style: "width:6rem;",
+                                 required: true %>
             </div>
             <%= f.submit "Agregar al carrito", class: "btn btn-success px-4" %>
-            <%= link_to "Volver a productos", products_path, class: "btn btn-outline-secondary" %>
+            <%= link_to "Volver a productos",
+                        products_path,
+                        class: "btn btn-outline-secondary" %>
           </div>
         <% end %>
       <% else %>
-        <p class="text-center text-danger">No se encontró la variante seleccionada.</p>
+        <p class="text-center text-danger">
+          No se encontró la variante seleccionada.
+        </p>
       <% end %>
     </div>
   </div>
