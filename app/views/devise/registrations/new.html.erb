@@ -1,82 +1,67 @@
-<div class="container py-5" style="max-width: 640px;">
-  <h1 class="h3 text-center mb-4">Crear cuenta</h1>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+  <div class="col-md-6 col-lg-5">
+    <div class="card shadow-sm border-0">
+      <div class="card-body p-4">
 
-  <% if resource && resource.errors.any? %>
-    <div class="alert alert-danger">
-      <strong>Revisa los siguientes campos:</strong>
-      <ul class="mb-0">
-        <% resource.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+        <h2 class="text-center mb-3" style="color:#7a5a2c;">
+          Crear cuenta
+        </h2>
+
+        <p class="text-muted text-center mb-4">
+          Regístrate para comprar en Aceites Piedra Colgada.
+        </p>
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <div class="mb-3">
+            <%= f.label :name, "Nombre completo", class: "form-label fw-semibold" %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :rut, "RUT (sin puntos ni guion)", class: "form-label fw-semibold" %>
+            <%= f.number_field :rut, class: "form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :email, "Correo electrónico", class: "form-label fw-semibold" %>
+            <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :password, "Contraseña", class: "form-label fw-semibold" %>
+            <% if @minimum_password_length %>
+              <small class="text-muted d-block mb-1">
+                Mínimo <%= @minimum_password_length %> caracteres.
+              </small>
+            <% end %>
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :password_confirmation, "Confirmar contraseña", class: "form-label fw-semibold" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+          </div>
+
+          <div class="form-check mb-3">
+            <%= f.check_box :accept_terms, class: "form-check-input" %>
+            <%= f.label :accept_terms, "Acepto los términos y condiciones", class: "form-check-label" %>
+          </div>
+
+          <div class="d-grid mt-3 mb-2">
+            <%= f.submit "Registrarme", class: "btn btn-success" %>
+          </div>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <%= form_with model: resource,
-                as: resource_name,
-                url: registration_path(resource_name),
-                class: "card p-4 shadow-sm",
-                data: { turbo: false } do |f| %>
+        <hr class="my-4">
 
-    <div class="row g-3">
-      <div class="col-md-6">
-        <%= f.label :first_name, "Nombre", class: "form-label" %>
-        <%= f.text_field :first_name, class: "form-control", required: true %>
-      </div>
-
-      <div class="col-md-6">
-        <%= f.label :last_name, "Apellido", class: "form-label" %>
-        <%= f.text_field :last_name, class: "form-control", required: true %>
-      </div>
-
-      <div class="col-12">
-        <%= f.label :rut, "RUT (Sin puntos ni guión)", class: "form-label" %>
-        <%= f.text_field :rut, class: "form-control", placeholder: "123456789", required: true %>
-      </div>
-
-      <div class="col-12">
-        <%= f.label :email, "Email", class: "form-label" %>
-        <%= f.email_field :email, class: "form-control", placeholder: "tu@email.com",
-                          autocomplete: "email", required: true %>
-      </div>
-
-      <div class="col-md-6">
-        <%= f.label :password, "Contraseña", class: "form-label" %>
-        <%= f.password_field :password,
-                             class: "form-control",
-                             minlength: 8,
-                             autocomplete: "new-password",
-                             required: true %>
-        <div class="form-text">Mínimo 8 caracteres.</div>
-      </div>
-
-      <div class="col-md-6">
-        <%= f.label :password_confirmation, "Confirmar contraseña", class: "form-label" %>
-        <%= f.password_field :password_confirmation,
-                             class: "form-control",
-                             autocomplete: "new-password",
-                             required: true %>
-      </div>
-
-      <div class="col-12">
-        <div class="form-check">
-          <%= f.check_box :accept_terms,
-                          class: "form-check-input",
-                          required: true,
-                          id: "accept_terms" %>
-          <%= f.label :accept_terms, "Acepto los Términos y Condiciones",
-                      class: "form-check-label" %>
+        <div class="text-center">
+          <span class="text-muted me-1">¿Ya tienes cuenta?</span>
+          <%= link_to "Inicia sesión", new_session_path(resource_name), class: "text-decoration-none" %>
         </div>
+
       </div>
     </div>
-
-    <div class="d-grid mt-4">
-      <%= f.submit "Crear cuenta", class: "btn btn成功 btn-success" %>
-    </div>
-  <% end %>
-
-  <p class="text-center mt-3 mb-0">
-    ¿Ya tienes cuenta?
-    <%= link_to "Inicia sesión", new_user_session_path, class: "text-decoration-none" %>
-  </p>
+  </div>
 </div>

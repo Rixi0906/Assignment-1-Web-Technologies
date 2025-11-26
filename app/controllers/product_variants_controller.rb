@@ -1,8 +1,8 @@
 class ProductVariantsController < ApplicationController
-  load_and_authorize_resource
   before_action :authenticate_user!
   before_action :set_product
   before_action :set_variant, only: [:edit, :update, :destroy]
+  before_action :authorize_product_variants!
 
   def new
     @product_variant = @product.product_variants.new
@@ -44,5 +44,9 @@ class ProductVariantsController < ApplicationController
 
   def variant_params
     params.require(:product_variant).permit(:size, :price, :stock)
+  end
+
+  def authorize_product_variants!
+    authorize! :manage, ProductVariant   
   end
 end

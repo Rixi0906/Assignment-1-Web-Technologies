@@ -13,6 +13,10 @@ Rails.application.routes.draw do
 
   # Cart
   get "/cart", to: "carts#show"
+  
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 
   # Core resources
   resources :products do

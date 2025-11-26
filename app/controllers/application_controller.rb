@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   # Extra fields for Devise forms
+  
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   # Devise already exposes current_user / user_signed_in? as helpers

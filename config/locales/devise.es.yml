@@ -1,0 +1,49 @@
+es:
+  devise:
+    confirmations:
+      confirmed: "Tu correo ha sido confirmado correctamente."
+      send_instructions: "En unos minutos recibirás un correo con instrucciones para confirmar tu dirección de correo."
+      send_paranoid_instructions: "Si tu correo existe en nuestra base de datos, recibirás un correo con instrucciones para confirmar tu dirección."
+    failure:
+      already_authenticated: "Ya has iniciado sesión."
+      inactive: "Tu cuenta aún no ha sido activada."
+      invalid: "%{authentication_keys} o contraseña inválidos."
+      locked: "Tu cuenta está bloqueada."
+      last_attempt: "Te queda un intento antes de que tu cuenta sea bloqueada."
+      not_found_in_database: "%{authentication_keys} o contraseña inválidos."
+      timeout: "Tu sesión ha expirado. Por favor inicia sesión nuevamente."
+      unauthenticated: "Debes iniciar sesión o registrarte antes de continuar."
+      unconfirmed: "Debes confirmar tu correo antes de continuar."
+    passwords:
+      no_token: "No puedes acceder a esta página sin venir desde el correo de recuperación de contraseña."
+      send_instructions: "En unos minutos recibirás un correo con instrucciones para restablecer tu contraseña."
+      send_paranoid_instructions: "Si tu correo existe en nuestra base de datos, recibirás un enlace para recuperar tu contraseña."
+      updated: "Tu contraseña se ha cambiado correctamente. Ya has iniciado sesión."
+      updated_not_active: "Tu contraseña se ha cambiado correctamente."
+    registrations:
+      destroyed: "¡Hasta pronto! Tu cuenta ha sido eliminada correctamente."
+      signed_up: "¡Bienvenido! Te has registrado correctamente."
+      signed_up_but_inactive: "Te has registrado correctamente, pero tu cuenta aún no está activada."
+      signed_up_but_locked: "Te has registrado correctamente, pero tu cuenta está bloqueada."
+      signed_up_but_unconfirmed: "Te hemos enviado un correo con un enlace de confirmación. Sigue el enlace para activar tu cuenta."
+      update_needs_confirmation: "Has actualizado tu cuenta, pero necesitamos verificar tu nuevo correo. Revisa tu bandeja y sigue el enlace de confirmación."
+      updated: "Tu cuenta se ha actualizado correctamente."
+      updated_but_not_signed_in: "Tu cuenta se ha actualizado correctamente, pero como cambiaste la contraseña, debes iniciar sesión de nuevo."
+    sessions:
+      signed_in: "Sesión iniciada correctamente."
+      signed_out: "Sesión cerrada correctamente."
+      already_signed_out: "La sesión ya estaba cerrada."
+    unlocks:
+      send_instructions: "En unos minutos recibirás un correo con instrucciones para desbloquear tu cuenta."
+      send_paranoid_instructions: "Si tu cuenta existe, recibirás un correo con instrucciones para desbloquearla."
+      unlocked: "Tu cuenta se ha desbloqueado correctamente. Por favor inicia sesión para continuar."
+  errors:
+    messages:
+      already_confirmed: "ya estaba confirmada, intenta iniciar sesión"
+      confirmation_period_expired: "debe confirmarse dentro de %{period}, por favor solicita una nueva"
+      expired: "ha expirado, por favor solicita una nueva"
+      not_found: "no se encontró"
+      not_locked: "no estaba bloqueada"
+      not_saved:
+        one: "1 error impidió que este %{resource} se guardara:"
+        other: "%{count} errores impidieron que este %{resource} se guardara:"
